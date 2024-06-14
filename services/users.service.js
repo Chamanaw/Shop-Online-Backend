@@ -45,6 +45,15 @@ async function updatePassword(user,newPassword){
   return result.affectedRows ? "Change password success" : "Error change password"
 }
 
+async function updateEmail(user,newEmail){
+  const connection = await connectDatabase()
+  const [result] = await connection.query(
+    "UPDATE user SET email = ? WHERE user_id = ?",
+    [newEmail,user]
+  );
+  return result.affectedRows ? "Change email success" : "Error change email"
+}
 
 
-module.exports = { getUser, findUser ,createUser ,updateUsername,updatePassword};
+
+module.exports = { getUser, findUser ,createUser ,updateUsername,updatePassword,updateEmail};

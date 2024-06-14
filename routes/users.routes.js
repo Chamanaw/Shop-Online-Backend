@@ -7,6 +7,6 @@ router.get('/user',checkAuthenticate,usersController.get)
 router.post('/signup',usersController.create)
 router.patch('/updateusername',checkAuthenticate,usersController.changeUsername)
 router.patch('/updatepassword',checkAuthenticate,usersController.changePassword)
-
+// router.patch('/updateEmail',checkAuthenticate,usersController.changeEmail)
 
 module.exports = router

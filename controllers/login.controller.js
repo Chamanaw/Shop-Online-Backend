@@ -7,7 +7,7 @@ async function login(req, res) {
     try {
         const result = await findUser(username);
         const match = result
-            ? await bcrypt.compare(password, result.password)
+            ? await bcrypt.compare(password,result.password)
             : false;
         if (!match) {
             return res

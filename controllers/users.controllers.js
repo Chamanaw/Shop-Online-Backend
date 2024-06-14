@@ -39,7 +39,15 @@ async function changePassword(req,res){
     }catch(err){
         res.status(500).json({message:err.message})
     }
-
 }
 
-module.exports = { get, create , changeUsername ,changePassword };
+async function changeEmail(req,res){
+    const {newEmail} = req.body
+    try{
+        const result = await users.updateEmail(req.user,newPassword)
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+}
+
+module.exports = { get, create , changeUsername ,changePassword,changeEmail };
