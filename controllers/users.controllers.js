@@ -34,7 +34,8 @@ async function changeUsername (req,res){
 async function changePassword(req,res){
     const {newPassword} = req.body
     try{
-        const result = await users.updatePassword(req.user,newPassword)
+        const passwordHash = await bcrypt.hash(newPassword,10);
+        const result = await users.updatePassword(req.user,passwordHash)
         res.json({message:result})
     }catch(err){
         res.status(500).json({message:err.message})
