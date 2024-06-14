@@ -27,4 +27,15 @@ async function createUser(username, password, email) {
   return result.affectedRows ? "Created successfully" : "Error in creating ";
 }
 
-module.exports = { getUser, findUser ,createUser};
+async function updateUsername(user,newUsername){
+    const connection = await connectDatabase();
+    const [result] = await connection.query(
+      "UPDATE user SET user_name = ? WHERE user_id = ?",
+      [newUsername,user]
+    );
+    return result.affectedRows ? "Update username Success" : "Error update"
+}
+
+
+
+module.exports = { getUser, findUser ,createUser ,updateUsername};

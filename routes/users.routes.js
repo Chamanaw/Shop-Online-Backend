@@ -5,6 +5,6 @@ const checkAuthenticate = require('../middlewares/checkAuthenticate')
 
 router.get('/user',checkAuthenticate,usersController.get)
 router.post('/signup',usersController.create)
-
+router.patch('/updateusername',checkAuthenticate,usersController.updateUsername)
 
 module.exports = router
