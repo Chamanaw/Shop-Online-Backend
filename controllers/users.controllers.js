@@ -44,7 +44,8 @@ async function changePassword(req,res){
 async function changeEmail(req,res){
     const {newEmail} = req.body
     try{
-        const result = await users.updateEmail(req.user,newPassword)
+        const result = await users.updateEmail(req.user,newEmail)
+        res.json({message:result})
     }catch(err){
         res.status(500).json({message:err.message})
     }
