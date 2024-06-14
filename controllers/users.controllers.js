@@ -21,7 +21,7 @@ async function create(req, res) {
     }
 }
 
-async function updateUsername (req,res){
+async function changeUsername (req,res){
     const {newUsername} = req.body
     try{
         const result = await users.updateUsername(req.user,newUsername)
@@ -42,4 +42,4 @@ async function changePassword(req,res){
 
 }
 
-module.exports = { get, create , updateUsername,changePassword };
+module.exports = { get, create , changeUsername ,changePassword };
