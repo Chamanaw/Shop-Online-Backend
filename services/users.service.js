@@ -33,9 +33,18 @@ async function updateUsername(user,newUsername){
       "UPDATE user SET user_name = ? WHERE user_id = ?",
       [newUsername,user]
     );
-    return result.affectedRows ? "Update username Success" : "Error update"
+    return result.affectedRows ? "Update username success" : "Error update"
+}
+
+async function updatePassword(user,newPassword){
+  const connection = await connectDatabase();
+  const [result] = await connection.query(
+    "UPDATE user SET password = ? WHERE user_id = ?",
+    [newPassword,user]
+  );
+  return result.affectedRows ? "Change password success" : "Error change password"
 }
 
 
 
-module.exports = { getUser, findUser ,createUser ,updateUsername};
+module.exports = { getUser, findUser ,createUser ,updateUsername,updatePassword};

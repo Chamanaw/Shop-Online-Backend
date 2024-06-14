@@ -31,5 +31,15 @@ async function updateUsername (req,res){
     }
 }
 
+async function changePassword(req,res){
+    const {newPassword} = req.body
+    try{
+        const result = await users.updatePassword(req.user,newPassword)
+        res.json({message:result})
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
 
-module.exports = { get, create , updateUsername };
+}
+
+module.exports = { get, create , updateUsername,changePassword };
