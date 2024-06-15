@@ -1,8 +1,7 @@
-const connectDatabase = require("../services/db.service");
+const connection = require("../services/db.service");
 
 async function getUser(user) {
-  const connection = await connectDatabase();
-  const [result] = await connection.query(
+  const result = await connection.execute(
     "SELECT  user_name , email, image FROM user WHERE user_id = ?",
     [user]
   )
@@ -10,8 +9,7 @@ async function getUser(user) {
 }
 
 async function findUser(username) {
-  const connection = await connectDatabase();
-  const [result] = await connection.query(
+  const result = await connection.execute(
     "SELECT user_id,password FROM user WHERE user_name = ? ",
     [username]
   );
@@ -19,8 +17,7 @@ async function findUser(username) {
 }
 
 async function createUser(username, password, email) {
-  const connection = await connectDatabase();
-  const [result] = await connection.query(
+  const result = await connection.execute(
     "INSERT INTO user(user_name,password,email) VALUE(?,?,?)",
     [username, password, email]
   );
@@ -28,8 +25,7 @@ async function createUser(username, password, email) {
 }
 
 async function updateUsername(user,newUsername){
-    const connection = await connectDatabase();
-    const [result] = await connection.query(
+    const result = await connection.execute(
       "UPDATE user SET user_name = ? WHERE user_id = ?",
       [newUsername,user]
     );
@@ -37,8 +33,7 @@ async function updateUsername(user,newUsername){
 }
 
 async function updatePassword(user,newPassword){
-  const connection = await connectDatabase();
-  const [result] = await connection.query(
+  const result = await connection.execute(
     "UPDATE user SET password = ? WHERE user_id = ?",
     [newPassword,user]
   );
@@ -46,8 +41,7 @@ async function updatePassword(user,newPassword){
 }
 
 async function updateEmail(user,newEmail){
-  const connection = await connectDatabase()
-  const [result] = await connection.query(
+  const result = await connection.execute(
     "UPDATE user SET email = ? WHERE user_id = ?",
     [newEmail,user]
   );

@@ -3,7 +3,7 @@ const router = express.Router()
 const usersController = require('../controllers/users.controllers')
 const checkAuthenticate = require('../middlewares/checkAuthenticate')
 
-router.get('/user',checkAuthenticate,usersController.get)
+router.get('/getuser',checkAuthenticate,usersController.get)
 router.post('/signup',usersController.create)
 router.patch('/updateusername',checkAuthenticate,usersController.changeUsername)
 router.patch('/updatepassword',checkAuthenticate,usersController.changePassword)

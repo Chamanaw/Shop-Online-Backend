@@ -1,15 +1,16 @@
 const mysql = require('mysql2/promise')
+const dbConfig = require("../configs/db.config")
 require('dotenv').config()
 
-const connectDatabase = async () => {
-    let conect = await mysql.createConnection({
-        host: process.env.DATABASE_HOST,
-        user: process.env.DATABASE_USER,
-        password: process.env.DATABASE_PASSWORD,
-        database: process.env.DATABASE_NAME,
-        port: process.env.DATABASE_PORT
-    })
-    return conect
+
+const execute = async (sql, params) => {
+    const conect = await mysql.createPool(dbConfig).getConnection()
+    try {
+        const [result] = await conect.execute(sql, params)
+        return result
+    } finally {
+        conect.release()
+    }
 }
 
-module.exports = connectDatabase
+module.exports = {execute}

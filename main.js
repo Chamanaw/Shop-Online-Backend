@@ -14,11 +14,13 @@ app.use(express.json())
 app.use(cors())
 app.use(express.static('public'))
 
+
 app.use('/api',refreshTokenRouter)
-app.use('/api',userRouter)
-app.use('/api',productsRouter)
 app.use('/api',loginRouter)
-app.use('/api',cartRouter)
+app.use('/api/user',userRouter)
+app.use('/api/cart',cartRouter)
+app.use('/api/products',productsRouter)
+
 
 
 app.listen(port)
