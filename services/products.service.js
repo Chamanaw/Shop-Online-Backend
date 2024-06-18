@@ -4,7 +4,7 @@ async function getMultiple() {
     const result = await connection.execute
         (
             `SELECT product.product_id,product.name,product.description,product.price,product.stock_quantity,product.color,
-            product.memory,category.c_name,product.image
+            product.memory,category.c_name,product.image,product.brand
             FROM product 
             JOIN category 
             ON product.category_id = category.category_id`
