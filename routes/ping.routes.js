@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/pingserver',(res)=>{console.log("ping");res.status(200)})
+router.get('/pingserver',(res)=>{res.send()})
 
 module.exports = router
