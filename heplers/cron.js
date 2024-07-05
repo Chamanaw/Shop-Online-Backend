@@ -3,8 +3,17 @@ const cron = require('node-cron')
 
 
 function job() {
-    cron.schedule('*/14 * * * *', () => {
-        https.get(process.env.URL_SERVER)
+
+    cron.schedule('*/14 * * * * ', () => {
+        https.get(process.env.URL_SERVER,(res)=>{
+            console.log(res)
+            if(res.statusCode === 200){
+                console.log('server restarted')
+            }
+            else{
+                console.log('failed restarted')
+            }
+        })
     });
 }
 
