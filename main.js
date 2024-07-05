@@ -6,6 +6,8 @@ const loginRouter = require("./routes/login.routes")
 const productsRouter = require("./routes/products.routes")
 const refreshTokenRouter = require("./routes/authen.routes")
 const cartRouter = require("./routes/cart.routes")
+const pingRouter = require("./routes/ping.routes")
+const job = require('./heplers/cron')
 require('dotenv').config()
 const port = 3000
 
@@ -17,13 +19,16 @@ app.use(express.static('public'))
 
 app.use('/api',refreshTokenRouter)
 app.use('/api',loginRouter)
+app.use('/api/ping',pingRouter)
 app.use('/api/user',userRouter)
 app.use('/api/cart',cartRouter)
 app.use('/api/products',productsRouter)
 
 
 
-app.listen(port)
+app.listen(port,()=>{
+    job()
+})
 
 
 
